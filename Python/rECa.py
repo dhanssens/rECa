@@ -62,12 +62,6 @@ def rECa(sensor, QP_data, IP_data, precision=.001, noise=0, ref_ECa=None, ori_MS
         Robust apparent electrical conductivity (rECa) estimation in ground-based frequency
         domain electromagnetics: Submitted to Geoderma, 2018
 
-        References
-        ----------
-        Guillemoteau, J., Sailhac, P., Boulanger, C., and J. Trules, 2015,
-        Inversion of ground constant offset loop-loop electromagnetic data for a
-        large range of induction numbers: Geophysics, 80, no. 1, E11-E21
-
         :AUTHOR: Daan Hanssens
         :CONTACT: daan.hanssens@ugent.be
         :REQUIRES: numpy, FDEM (http://github.com/dhanssens), shapely, scipy
@@ -113,7 +107,7 @@ def rECa(sensor, QP_data, IP_data, precision=.001, noise=0, ref_ECa=None, ori_MS
 
                 else:
 
-                    # EG2015 ECa method (Extended Guillemoteau et al., 2015; Appendix B)
+                    # Calculate initial ECa
                     E = 1 / 2 * np.sqrt((FWD_QP - rQPdata[ii]) ** 2 + (FWD_IP - rIPdata[ii]) ** 2)
                     ref_ECa[ii] = EC_range[E.argmin()]
 
@@ -178,68 +172,6 @@ def rECa(sensor, QP_data, IP_data, precision=.001, noise=0, ref_ECa=None, ori_MS
 
     # Return output
     return rECa, is_ECa_robust
-
-
-def EG2015_ECa(sensor, QP_data, IP_data, max_ECa=4, ori_MSa=0):
-    """
-        Calculates the ECa-QP and -IP curve
-
-        Parameters
-        ----------
-        sensor: object
-            Sensor object (FDEM.MODEL.Sensor)
-
-        QP: np.array
-            QP (quadrature-phase or out-of-phase) data (ppm)
-
-        IP: np.array
-            IP (in-phase) data (ppm)
-
-        max_ECa: float, optional
-            Maximum sampled homogeneous EC value (S/m)
-
-        ori_MSa: float, optional
-            Homogeneous half-space MS value used to generate original ECa-QP curve, 0 by default
-
-        Returns
-        -------
-        EG2015_ECa: np.array
-            EG2015 apparent electrical conductivity (S/m)
-    """
-
-    # Get extra information about input structure
-    shape = np.shape(QP_data)
-    size = np.size(QP_data)
-
-    # Flatten initial matrices/arrays
-    rQPdata = np.asarray(QP_data).flatten()
-    rIPdata = np.asarray(IP_data).flatten()
-
-    # Generate EC-QP curve
-    [EC_range, FWD_QP, FWD_IP, _] = ECa_QP_curve(sensor, max_ECa=max_ECa, ori_MSa=ori_MSa, alt_MSa=0, noise=0)
-
-    # Initialize array
-    iECa = np.ones(size) * np.NaN
-
-    # Loop data TODO paralize
-    for ii in range(size):
-
-        if np.isnan(rQPdata[ii]):
-
-            # Assign NaN value
-            iECa[ii] = np.NaN
-
-        else:
-
-            # EG2015 ECa method (Extended Guillemoteau et al., 2015; Appendix B)
-            E = 1 / 2 * np.sqrt((FWD_QP - rQPdata[ii]) ** 2 + (FWD_IP - rIPdata[ii]) ** 2)
-            iECa[ii] = EC_range[E.argmin()]
-
-    # Reshape to original dimensions
-    EG2015_ECa = np.reshape(iECa, shape)
-
-    # Return output
-    return EG2015_ECa
 
 
 def ECa_QP_curve(sensor, precision=.001, noise=0, max_ECa=4, min_ECa=0.0001, ori_MSa=.0, alt_MSa=0):
