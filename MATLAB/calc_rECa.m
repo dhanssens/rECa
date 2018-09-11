@@ -26,11 +26,6 @@
 %  Output:
 %  rECa                 rECa (S/m) estimation
 %
-%  Additional reference:
-%  Guillemoteau, J., Sailhac, P., Boulanger, C., and J. Trules, 2015, 
-%  Inversion of ground constant offset loop-loop electromagnetic data for a 
-%  large range of induction numbers: Geophysics, 80, no. 1, E11-E21.
-%
 %  Author:
 %  Created by Daan Hanssens.
 %  Ghent University, Belgium, 2017.
@@ -107,8 +102,7 @@ function rECa = calc_rECa(S,I,init)
 
                         if isnan(I.QPdata(r,c)) == 0
 
-                            % Calculate inital ECa (S/m) estimation
-                            % Updated Guillemoteau et al. (2015)
+                            % Calculate initial ECa (S/m) estimation
                             E= 1/2 .* sqrt((FWD_QP-I.QPdata(r,c)).^2 + (FWD_IP-I.IPdata(r,c)).^2);
                             init(r,c)= crv_EC_r(E == min(E(:)));
 
