@@ -3,8 +3,8 @@ Robust apparent electrical conductivity algorithm
 Created by Daan Hanssens  
 Contact Daan.Hanssens@UGent.be  
 
-This repository contains the code associated with;
-**Hanssens, D., Delefortrie, S., Bobe, C., Hermans, T., and P., De Smedt, 2018.  
+This repository contains the code associated with;  
+**Hanssens, D., Delefortrie, S., Bobe, C., Hermans, T., and P., De Smedt, 2018.   
 Improving the reliability of soil EC-mapping: robust apparent electrical conductivity  
 (rECa) estimation in ground-based frequency domain electromagnetics. Submitted to Geoderma, 2018.**
 
