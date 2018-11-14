@@ -9,9 +9,8 @@ from scipy import interpolate
 from shapely.geometry import LineString
 import sys
 
-# Import FDEM
-sys.path.append('D:\PYTHON_files_2017\FDEM_PROCESSING')
-import FDEM.MODEL
+# Import FDEM1D (http://github.com/dhanssens)
+import FDEM1D
 
 
 def rECa(sensor, QP_data, IP_data, precision=.001, noise=0, ref_ECa=None, ori_MSa=0, alt_MSa=0, max_ECa=4):
@@ -21,7 +20,7 @@ def rECa(sensor, QP_data, IP_data, precision=.001, noise=0, ref_ECa=None, ori_MS
         Parameters
         ----------
         sensor: object
-            Sensor object (FDEM.MODEL.Sensor)
+            Sensor object (FDEM1D.Sensor)
 
         QP_data: np.array
             QP (quadrature-phase or out-of-phase) data (ppm)
@@ -181,7 +180,7 @@ def ECa_QP_curve(sensor, precision=.001, noise=0, max_ECa=4, min_ECa=0.0001, ori
         Parameters
         ----------
         sensor: object
-            Sensor object (FDEM.MODEL.Sensor)
+            Sensor object (FDEM1D.Sensor)
 
         precision: float, optional
             Approximated required ECa precision (S/m)
@@ -224,7 +223,7 @@ def ECa_QP_curve(sensor, precision=.001, noise=0, max_ECa=4, min_ECa=0.0001, ori
 
         :AUTHOR: Daan Hanssens
         :CONTACT: daan.hanssens@ugent.be
-        :REQUIRES: numpy, FDEM (http://github.com/dhanssens), scipy
+        :REQUIRES: numpy, FDEM1D (http://github.com/dhanssens), scipy
 
         TODO fully paralize FWD model
     """
@@ -251,7 +250,7 @@ def ECa_QP_curve(sensor, precision=.001, noise=0, max_ECa=4, min_ECa=0.0001, ori
         model = FDEM.MODEL.Model(thick, sus, con, perm)
 
         # Calculate forward response (ppm)
-        [IP[ii], QP[ii]] = FDEM.MODEL.Calculate(sensor, model).forward()
+        [IP[ii], QP[ii]] = FDEM1D.Calculate(sensor, model).forward()
 
     # Assess robustness of curve (if noise is present)
     if noise != 0:
@@ -277,7 +276,7 @@ def ECa_QP_curve(sensor, precision=.001, noise=0, max_ECa=4, min_ECa=0.0001, ori
                 model = FDEM.MODEL.Model(thick, sus, con, perm)
 
                 # Calculate forward response (ppm)
-                [IP_alt[ii], QP_alt[ii]] = FDEM.MODEL.Calculate(sensor, model).forward()
+                [IP_alt[ii], QP_alt[ii]] = FDEM1D.Calculate(sensor, model).forward()
 
             # Calculate slope for required precision and magnetic effects
             QP_diff = np.abs(np.diff(QP[::precision_ind])) - (np.abs(QP[::precision_ind] - QP_alt[::precision_ind]))[:-1]
