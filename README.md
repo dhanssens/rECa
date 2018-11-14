@@ -1,5 +1,5 @@
 # rECa
-Robust apparent electrical conductivity algorithm  
+Robust apparent electrical conductivity
 Created by Daan Hanssens  
 Contact Daan.Hanssens@UGent.be  
 
