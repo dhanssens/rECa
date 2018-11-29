@@ -57,9 +57,10 @@ def rECa(sensor, QP_data, IP_data, precision=.001, noise=0, ref_ECa=None, ori_MS
 
         Cite
         ----
-        Hanssens, D., Delefortrie, S., Bobe, C., De Smedt, P., and M. Van Meirvenne, 2018,
-        Robust apparent electrical conductivity (rECa) estimation in ground-based frequency
-        domain electromagnetics: Submitted to Geoderma, 2018
+        Hanssens, D., Delefortrie, S., Bobe, C., Hermans, T., De Smedt, P., 2019. 
+        Improving the reliability of soil EC-mapping: Robust apparent electrical 
+        conductivity (rECa) estimation in ground-based frequency domain electromagnetics. 
+        Geoderma 337, 1155-1163.
 
         :AUTHOR: Daan Hanssens
         :CONTACT: daan.hanssens@ugent.be
@@ -216,10 +217,10 @@ def ECa_QP_curve(sensor, precision=.001, noise=0, max_ECa=4, min_ECa=0.0001, ori
 
         Cite
         ----
-        Hanssens, D., Delefortrie, S., Bobe, C., De Smedt, P., and M. Van Meirvenne, 2018,
-        Robust apparent electrical conductivity (rECa) estimation in frequency domain
-        electromagnetics (including MATLAB, Python and pseudo-code): Submitted to
-        Computers & Geosciences, 2018
+        Hanssens, D., Delefortrie, S., Bobe, C., Hermans, T., De Smedt, P., 2019. 
+        Improving the reliability of soil EC-mapping: Robust apparent electrical 
+        conductivity (rECa) estimation in ground-based frequency domain electromagnetics. 
+        Geoderma 337, 1155-1163.
 
         :AUTHOR: Daan Hanssens
         :CONTACT: daan.hanssens@ugent.be
