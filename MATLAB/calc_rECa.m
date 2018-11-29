@@ -27,10 +27,10 @@
 %  rECa                 rECa (S/m) estimation
 %
 %  Cite:
-%  Hanssens, D., Delefortrie, S., Bobe, C., Hermans, T., and P., De Smedt, 
-%  2018. Improving the reliability of soil EC-mapping: robust apparent 
-%  electrical conductivity (rECa) estimation in ground-based frequency 
-%  domain electromagnetics. Geoderma.
+%  Hanssens, D., Delefortrie, S., Bobe, C., Hermans, T., De Smedt, P., 2019. 
+%  Improving the reliability of soil EC-mapping: Robust apparent electrical 
+%  conductivity (rECa) estimation in ground-based frequency domain electromagnetics. 
+%  Geoderma 337, 1155-1163.
 %
 %  Additional reference:
 %  Huang, H., Won, I.J., 2000. Conductivity and Susceptibility Mapping 
